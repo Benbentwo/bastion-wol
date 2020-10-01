@@ -9,7 +9,7 @@ import (
 	"net/http"
 )
 
-func WolPage(w http.ResponseWriter, r *http.Request){
+func WolPage(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "{ \"status\": \"ok\" }")
 	log.Logger().Infof("%s: WOL Page Pinged by: %s", now(), r.Host)
 }
@@ -70,4 +70,3 @@ func wakeUDP(addr string, target net.HardwareAddr, password []byte) error {
 	// Attempt to wake target machine.
 	return c.WakePassword(addr, target, password)
 }
-wi
