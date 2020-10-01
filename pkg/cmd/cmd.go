@@ -2,6 +2,7 @@ package cmd
 
 import (
 	"github.com/Benbentwo/bastion-wol/pkg/cmd/common"
+	"github.com/Benbentwo/bastion-wol/pkg/cmd/serve"
 	"github.com/Benbentwo/bastion-wol/pkg/version"
 	"github.com/spf13/viper"
 	"io"
@@ -37,6 +38,7 @@ func NewMainCmd(in terminal.FileReader, out terminal.FileWriter, err io.Writer, 
 
 	// Section to add commands to:
 	cmd.AddCommand(version.NewCmdVersion(commonOpts))
+	cmd.AddCommand(serve.NewCmdServe(commonOpts))
 
 	return cmd
 }

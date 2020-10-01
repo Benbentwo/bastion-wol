@@ -11,6 +11,7 @@ require (
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
 	github.com/google/go-github v17.0.0+incompatible
 	github.com/google/go-querystring v1.0.0 // indirect
+	github.com/mdlayher/wol v0.0.0-20200423173749-bc23029f94e1
 	github.com/pkg/errors v0.9.1
 	github.com/rickar/props v0.0.0-20170718221555-0b06aeb2f037 // indirect
 	github.com/spf13/cobra v1.0.0

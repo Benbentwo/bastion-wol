@@ -142,9 +142,9 @@ func StandardErrorMessage(err error) (string, bool) {
 			if server, err := url.Parse(t.URL); err == nil {
 				host = server.Host
 			}
-			return fmt.Sprintf("The connection to the server %s was refused - did you specify the right host or port?", host), true
+			return fmt.Sprintf("The connection to the serve %s was refused - did you specify the right host or port?", host), true
 		}
-		return fmt.Sprintf("Unable to connect to the server: %v", t.Err), true
+		return fmt.Sprintf("Unable to connect to the serve: %v", t.Err), true
 	}
 	return "", false
 }

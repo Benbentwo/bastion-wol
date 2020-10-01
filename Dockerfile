@@ -6,7 +6,7 @@ ARG binary_name=main
 ARG target_os=linux
 ARG target_arch=amd64
 
-# Build the server Binary
+# Build the serve Binary
 WORKDIR /app
 #WORKDIR /go/src/${GIT_SERVER}/${GIT_ORG}/${GIT_REPO}
 
