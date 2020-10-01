@@ -43,7 +43,7 @@ func (o *ServeOptions) Run() error {
 
 	log.Logger().Infof("Serving on port %d", o.port)
 	http.HandleFunc("/status", StatusPage)
-	http.HandleFunc("/wol", WolPage)
+	//http.HandleFunc("/wol", WolPage)
 	log.Logger().Fatalf("listen and serve failed due to %s", http.ListenAndServe(":"+common.MustStrConvToStr(o.port), nil))
 	return nil
 }
