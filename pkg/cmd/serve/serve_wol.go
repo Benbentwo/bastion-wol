@@ -40,22 +40,6 @@ func wakeCmd(macAddress string) error {
 	return nil
 }
 
-//func wakeRaw(iface string, target net.HardwareAddr, password []byte) error {
-//	ifi, err := net.InterfaceByName(iface)
-//	if err != nil {
-//		return err
-//	}
-//
-//	c, err := wol.NewRawClient(ifi)
-//	if err != nil {
-//		return err
-//	}
-//	defer c.Close()
-//
-//	// Attempt to wake target machine.
-//	return c.WakePassword(target, password)
-//}
-
 func wakeUDP(addr string, target net.HardwareAddr, password []byte) error {
 	c, err := wol.NewClient()
 	if err != nil {

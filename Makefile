@@ -122,4 +122,5 @@ fmt: ## Format the code
       		echo "Fixed formatting for: $(FORMATTED)"; \
       	fi
 
-all: linux arm win win32 darwin
+#Sorry win32 for now
+all: linux arm win darwin
