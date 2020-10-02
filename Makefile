@@ -1,7 +1,7 @@
 GIT_SERVER 	:= github.com
 ORG         := Benbentwo
 REPO        := bastion-wol
-BINARY 		:= go-bin-generic
+BINARY 		:= bastion-wol
 
 # Pretty Constant stuff Below, Configurable above
 
