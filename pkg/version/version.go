@@ -50,33 +50,37 @@ func (o *VersionOptions) upgradeIfNeeded(currentVersion semver.Version) error {
 		return errors.Wrap(err, "getting latest version")
 	}
 	if currentVersion.LT(newVersion) {
-		message := fmt.Sprintf("Would you like to upgrade to the %s version?", util.ColorInfo(newVersion))
-		answer := true
-		prompt := &survey.Confirm{
-			Message: message,
-			Default: answer,
-			Help:    "This will fetch the latest binary and update your local with it",
-		}
-		surveyOpts := survey.WithStdio(o.In, o.Out, o.Err)
-		err := survey.AskOne(prompt, &answer, nil, surveyOpts)
-		if err != nil {
-			return err
-		}
-
-		if answer {
-			candidateInstallVersion, prefix, err := o.candidateInstallVersion()
+		if !o.BatchMode {
+			message := fmt.Sprintf("Would you like to upgrade to the %s version?", util.ColorInfo(newVersion))
+			answer := true
+			prompt := &survey.Confirm{
+				Message: message,
+				Default: answer,
+				Help:    "This will fetch the latest binary and update your local with it",
+			}
+			surveyOpts := survey.WithStdio(o.In, o.Out, o.Err)
+			err := survey.AskOne(prompt, &answer, nil, surveyOpts)
 			if err != nil {
 				return err
 			}
 
-			if o.needsUpgrade(currentVersion, candidateInstallVersion) {
-				shouldUpgrade, err := o.ShouldUpdate(candidateInstallVersion)
-				if err != nil {
-					return errors.Wrap(err, "failed to determine if we should upgrade")
-				}
-				if shouldUpgrade {
-					return o.InstallBin(true, prefix, candidateInstallVersion.String())
-				}
+			if !answer {
+				return nil
+			}
+
+		}
+		candidateInstallVersion, prefix, err := o.candidateInstallVersion()
+		if err != nil {
+			return err
+		}
+
+		if o.needsUpgrade(currentVersion, candidateInstallVersion) {
+			shouldUpgrade, err := o.ShouldUpdate(candidateInstallVersion)
+			if err != nil {
+				return errors.Wrap(err, "failed to determine if we should upgrade")
+			}
+			if shouldUpgrade {
+				return o.InstallBin(true, prefix, candidateInstallVersion.String())
 			}
 		}
 	}
